@@ -1,0 +1,11 @@
+.mainContainer{
+
+    display: flex;
+    justify-content: space-between;
+    align-content: space-evenly;
+    flex-direction: row;
+
+    width: 400px;
+    height: 50px;
+}
+

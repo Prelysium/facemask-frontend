@@ -1,0 +1,40 @@
+.mainContainer{
+
+    display: flex;
+
+    justify-content:  center;
+    align-items: center;
+
+    cursor: pointer;
+    min-width: 80px;
+}
+
+.textContainer{
+    position: relative;
+    padding-bottom: 5px;
+    color: #322e2e;
+}
+
+.textContainer:hover::after{
+    margin-right: 0;
+    width: 100%;
+}
+
+.textContainer:hover{
+
+    color: black;
+}
+
+.textContainer::after{
+    background: black;
+    content: "";
+    width: 0;
+    height: 2px;
+    border-radius: 2px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin-right: 50%;
+
+    transition: all .3s;
+}

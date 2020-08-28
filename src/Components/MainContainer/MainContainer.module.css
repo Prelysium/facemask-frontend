@@ -1,0 +1,9 @@
+.mainContainer{
+    background: #e8e8e8;
+
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+
+    box-sizing: border-box;
+}
