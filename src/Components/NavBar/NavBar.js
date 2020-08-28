@@ -8,10 +8,10 @@ export default class NavBar extends React.Component{
 
     render() {
         return (<div className={`${styles.mainContainer} ${this.props.className}`}>
-                    <NavItem />
-                    <NavItem />
-                    <NavItem />
-                    <NavItem />
+                    <NavItem title={'Home'} route={'home'}/>
+                    <NavItem title={'Video'} route={'video'}/>
+                    <NavItem title={'Upload'} route={'upload'}/>
+                    <NavItem title={'About Us'} route={'about-us'}/>
                 </div>)
     }
 }

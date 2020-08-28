@@ -1,5 +1,6 @@
 import React from "react";
 import styles from './NavItem.module.css'
+import {Link} from "react-router-dom";
 
 export default class NavItem extends React.Component{
     constructor(props) {
@@ -8,7 +9,10 @@ export default class NavItem extends React.Component{
 
     render() {
         return (<div className={styles.mainContainer}>
-                    <span className={styles.textContainer}>Beqa yle</span>
+
+                    <Link to={`${this.props.route}`} style={{textDecoration: 'none'}}>
+                        <span className={styles.textContainer}>{this.props.title}</span>
+                    </Link>
                 </div>);
     }
 }
