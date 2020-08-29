@@ -27,7 +27,6 @@ export default class HomeComponent extends React.Component{
                         <div className={`${styles.leftTexts} ${styles.texts}`}>
                             <TextItem title={"Image Classification"} text={"Filter and categorize images, monitor for inappropriate content, and automatically assign labels for all of your digital media."}/>
                             <TextItem title={"Image Classification"} text={"Filter and categorize images, monitor for inappropriate content, and automatically assign labels for all of your digital media."}/>
-
                         </div>
                         <Circle size={600}/>
                         <div className={`${styles.rightTexts} ${styles.texts}`}>
