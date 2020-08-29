@@ -1,0 +1,12 @@
+.mainContainer{
+    border: 1px solid red;
+
+    width: 100%;
+
+    box-sizing: border-box;
+    flex: 1;
+}
+
+.svg{
+    border: 1px solid green;
+}
