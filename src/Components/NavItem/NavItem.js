@@ -9,7 +9,6 @@ export default class NavItem extends React.Component{
 
     render() {
         return (<div className={styles.mainContainer}>
-
                     <Link to={`${this.props.route}`} style={{textDecoration: 'none'}}>
                         <span className={styles.textContainer}>{this.props.title}</span>
                     </Link>
