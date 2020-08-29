@@ -1,12 +1,89 @@
 .mainContainer{
-    border: 1px solid red;
 
     width: 100%;
 
     box-sizing: border-box;
     flex: 1;
+
+    overflow-y: scroll;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
 }
 
 .svg{
     border: 1px solid green;
+}
+
+
+.companyName{
+    font-family: 'Amatic SC', cursive;
+    font-size: 35px;
+    color: #263047;
+
+    margin-bottom: 10px;
+}
+
+.apiFeatures{
+    font-size: 45px;
+}
+
+
+.title{
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.emptySpace{
+    min-height: 500px;
+    height: 500px;
+
+}
+
+.middleContainer{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+
+}
+
+.rightTexts{
+}
+
+.texts{
+    display: flex;
+    flex-direction: column;
+
+    justify-content: space-between;
+}
+
+.leftTexts{
+}
+
+.textItemBody{
+    color: gray;
+    margin-top: 15px;
+}
+
+.textItemTitle{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.textItem{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    max-width: 300px;
 }
