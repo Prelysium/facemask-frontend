@@ -57,7 +57,6 @@ export default class VideoComponent extends React.Component{
 
         return (<div>
                     <video className={styles.video} ref={this.videoRef} autoPlay/>
-
                     <button onClick={this.sendMessage}>Click</button>
                 </div>);
     }
