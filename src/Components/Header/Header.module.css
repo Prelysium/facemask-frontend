@@ -9,6 +9,8 @@
 
     background: whitesmoke;
     box-shadow: 2px 2px 2px #888282;
+
+    z-index: 10;
 }
 
 .navBar{

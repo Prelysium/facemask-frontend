@@ -1,5 +1,7 @@
 import React from "react";
 import styles from './VideoComponent.module.css'
+import VideoPanel from "./VideoPanel/VideoPanel";
+import video from "../../assets/videoplayback.mp4";
 
 export default class VideoComponent extends React.Component{
     constructor(props) {
@@ -55,9 +57,17 @@ export default class VideoComponent extends React.Component{
 
     render(){
 
-        return (<div>
-                    <video className={styles.video} ref={this.videoRef} autoPlay/>
-                    <button onClick={this.sendMessage}>Click</button>
+        return (<div className={styles.mainContainer}>
+                    <div className={styles.upperPanel}>
+                        <VideoPanel title={'Server Messages'}/>
+                        <VideoPanel title={'Video Stream'} large={true}>
+                            <video className={styles.video} src={video}/>
+                            <div className={styles.time}>
+                                00 : 21
+                            </div>
+                        </VideoPanel>
+                        <VideoPanel title={'Controls'}/>
+                    </div>
                 </div>);
     }
 

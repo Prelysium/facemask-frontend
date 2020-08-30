@@ -15,22 +15,82 @@
 .mainCircle{
 }
 
-@keyframes circleProgress {
+@keyframes upperRectAnimation {
     from {width: 0}
-    to {width: 150px}
+    85% {width: calc(600px - 2*90px); x: 90}
+    to{width:0; x: calc(600px - 90px)}
 }
 
-.fill{
-    animation: circleProgress 10s;
+@keyframes rightRectAnimation {
+    from {height: 0}
+    85% {height: calc(600px - 2*90px); y: 90}
+    to{height:0; y: calc(600px - 90px)}
 }
-/*
-#rectClip rect{
-    animation: circleProgress 10s;
-}*/
+
+@keyframes lowerRectAnimation {
+    from {width: 0}
+    85% {width: calc(600px - 2*90px); x: 90}
+    to{width:0; x: 90}
+}
+
+@keyframes leftRectAnimation {
+    from {height: 0}
+    85% {height: calc(600px - 2*90px); y: 90}
+    to{height:0; y: 90}
+}
+
+.upperFill{
+    animation: upperRectAnimation 10s;
+}
+
+.rightFill{
+    animation: rightRectAnimation 10s;
+}
+
+.leftFill{
+    animation: leftRectAnimation 10s;
+}
+
+.lowerFill{
+    animation: lowerRectAnimation 10s;
+}
 
 .presentation{
     position: absolute;
     -webkit-box-shadow: 0px 9px 14px -1px rgba(162,165,184,1);
     -moz-box-shadow: 0px 9px 14px -1px rgba(162,165,184,1);
     box-shadow: 0px 9px 14px -1px rgba(162,165,184,1);
+}
+
+.shapeContainer{
+    width: 26px;
+    height: 26px;
+
+    background: #fdfdfd;
+
+    position: absolute;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.lowerRightShape{
+    bottom: 76px;
+    right: 76px;
+}
+
+.lowerLeftShape{
+    bottom: 76px;
+    left: 76px;
+}
+
+.upperRightShape{
+    top: 76px;
+    right: 76px;
+}
+
+.upperLeftShape{
+    top: 76px;
+    left: 76px;
 }
