@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./Circle.module.css"
 import presentation from "../../assets/illustration2.svg"
-import {keyframes} from 'styled-components'
+// import {keyframes} from 'styled-components'
 
 export default class Circle extends React.Component{
 
