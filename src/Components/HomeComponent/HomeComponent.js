@@ -1,6 +1,6 @@
 import React from "react";
 import styles from './HomeComponent.module.css'
-import Circle from "../Circle/Circle";
+import Circle from "./Circle/Circle";
 
 const TextItem = (props) => (
     <div className={styles.textItem}>

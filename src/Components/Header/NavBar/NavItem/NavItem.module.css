@@ -7,12 +7,19 @@
 
     cursor: pointer;
     min-width: 80px;
+    user-select: none;
+
+
+    font-family: 'Montserrat', sans-serif;
+    font-size: 17px;
 }
 
 .textContainer{
     position: relative;
     padding-bottom: 5px;
     color: #322e2e;
+
+    transition: all .3s;
 }
 
 .textContainer:hover::after{
@@ -22,14 +29,14 @@
 
 .textContainer:hover{
 
-    color: black;
+    color: #ff4e4c;
 }
 
 .textContainer::after{
-    background: black;
+    background: #ff4e4c;
     content: "";
     width: 0;
-    height: 2px;
+    height: 1px;
     border-radius: 2px;
     position: absolute;
     bottom: 0;
@@ -37,4 +44,16 @@
     margin-right: 50%;
 
     transition: all .3s;
+}
+
+.selected{
+    position: relative;
+
+    color: whitesmoke;
+    background: #ff4e4c;
+    font-weight: bold;
+
+    padding: 6px;
+    border-radius: 15px;
+    cursor: default;
 }

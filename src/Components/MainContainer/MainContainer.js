@@ -5,6 +5,7 @@ import {Route} from "react-router-dom";
 import HomeComponent from "../HomeComponent/HomeComponent";
 import VideoComponent from "../VideoComponent/VideoComponent";
 import UploadComponent from "../UploadComponent/UploadComponent";
+import AboutComponent from "../AboutComponent/AboutComponent";
 
 export default class MainContainer extends  React.Component {
     constructor(props) {
@@ -17,7 +18,7 @@ export default class MainContainer extends  React.Component {
             <Route exact path={'/'} component={HomeComponent}/>
             <Route exact path={'/video'} component={VideoComponent}/>
             <Route exact path={'/upload'} component={UploadComponent}/>
-            <Route exact path={'/about-us'} render={() => <div>about-us</div>}/>
+            <Route exact path={'/about-us'} component={AboutComponent}/>
         </div>
     }
 }

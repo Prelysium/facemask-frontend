@@ -1,6 +1,6 @@
 import React from "react";
 import styles from './Header.module.css'
-import NavBar from "../NavBar/NavBar";
+import NavBar from "./NavBar/NavBar";
 import logo from '../../assets/logo.png'
 
 
@@ -18,4 +18,6 @@ export default class Header extends React.Component{
                     <NavBar className={styles.navBar}/>
                 </div>);
     }
+
+
 }

@@ -7,12 +7,10 @@ export default class UploadComponent extends React.Component{
     }
 
     render(){
-        return <div className={styles.mainComponent}>
-            Upload
-            <div>
-                <input onChange={this.uploadHandler} type={'file'}/>
-            </div>
-        </div>
+        return (<div className={styles.mainComponent}>
+            <div className={`${styles.leftContainer} ${styles.basicContainer}`}>left</div>
+            <div className={`${styles.rightContainer} ${styles.basicContainer}`}>right</div>
+        </div>);
     }
 
     uploadHandler = e => {
