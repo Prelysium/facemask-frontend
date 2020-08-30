@@ -12,40 +12,15 @@ export default class VideoComponent extends React.Component{
 
     componentDidMount() {
         console.log("trying to establish connection");
-        this.socket = new WebSocket('ws://localhost:5000');
 
-        // Opened
-        this.socket.addEventListener('open', e => {
-            console.log("Connection established.");
-            this.connection = new RTCPeerConnection();
-            this.connection.addEventListener('track', this.trackReceived);
-            this.connection.addEventListener('icecandidate', this.iceCandidate);
-        });
-
-        // Closed
-        this.socket.addEventListener('close', function (event) {
-            console.log('Disconnected from the server!')
-        });
-
-        // Listen for messages
-        this.socket.addEventListener('message',  async (e) => {
-            console.log('Message from server ', e.data);
-            const answer = new RTCSessionDescription({sdp: e.data, type: "answer"})
-            // const answer = await response.json();
-            await this.connection.setRemoteDescription(answer);
-        });
+        this.connection = new RTCPeerConnection();
+        this.connection.addEventListener('icecandidate', this.iceCandidate);
+        this.connection.addEventListener('track', this.trackReceived);
     }
 
     // Send a msg to the websocket
     sendMessage = async () => {
-        this.stream = await navigator.mediaDevices.getUserMedia({video:true});
-        await this.connection.addTrack(this.stream.getVideoTracks()[0], this.stream);
 
-        console.log("connection set");
-
-        // create offer:
-        const offer = await this.connection.createOffer();
-        await this.connection.setLocalDescription(offer)
 
     }
 
@@ -61,18 +36,28 @@ export default class VideoComponent extends React.Component{
                     <div className={styles.upperPanel}>
                         <VideoPanel title={'Server Messages'}/>
                         <VideoPanel title={'Video Stream'} large={true}>
-                            <video className={styles.video} src={video}/>
+                            <video className={styles.video} src={video} ref={this.videoRef}/>
                             <div className={styles.time}>
                                 00 : 21
                             </div>
+                            <button onClick={this.clickHandler}>click</button>
                         </VideoPanel>
                         <VideoPanel title={'Controls'}/>
                     </div>
                 </div>);
     }
 
-    clickHandler = () => {
+    clickHandler = async () => {
         console.log("clink");
+
+        this.stream = await navigator.mediaDevices.getUserMedia({video:true});
+        await this.connection.addTrack(this.stream.getVideoTracks()[0], this.stream);
+
+        console.log("connection set");
+
+        // create offer:
+        const offer = await this.connection.createOffer();
+        await this.connection.setLocalDescription(offer)
     }
 
     iceCandidate = async (event) => {
