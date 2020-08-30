@@ -36,7 +36,7 @@ export default class VideoComponent extends React.Component{
                     <div className={styles.upperPanel}>
                         <VideoPanel title={'Server Messages'}/>
                         <VideoPanel title={'Video Stream'} large={true}>
-                            <video className={styles.video} src={video} ref={this.videoRef}/>
+                            <video className={styles.video} autoPlay ref={this.videoRef}/>
                             <div className={styles.time}>
                                 00 : 21
                             </div>
@@ -65,8 +65,22 @@ export default class VideoComponent extends React.Component{
         if(!event.candidate){
             console.log("ice gathering finished.");
 
-            console.log(this.connection.localDescription);
-            this.socket.send(JSON.stringify(this.connection.localDescription));
+            const data = {
+                mode: "cartoon",
+                sdp: event.target.localDescription.sdp,
+            };
+
+            const response = await fetch('http://localhost:5000/api/offer', {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+            });
+
+
+            const answer = await response.json();
+            await event.target.setRemoteDescription(answer);
         }
 
     }

@@ -28,9 +28,9 @@ export default class UploadComponent extends React.Component{
     }
 
     render(){
-
+        console.log("hmm: ", this.state.uploadedFiles);
         const files = this.state.uploadedFiles.map(file => (
-            <div className={styles.fileItem}>file.name</div>
+            <div className={styles.fileItem} key={file.name}>{file.name}</div>
         ))
 
         return (<div className={styles.mainComponent}>
@@ -50,7 +50,7 @@ export default class UploadComponent extends React.Component{
                         </div>
                         <img className={styles.fileUploadImage} src={fileUpload}/>
                         <div className={styles.dragFilesLabel}>Drag files to upload</div>
-                        <input onChange={this.fileUploaded} className={styles.uploadInput} type={'file'} id={'upload'}/>
+                        <input onChange={this.handleLoad} className={styles.uploadInput} type={'file'} id={'upload'}/>
                         <label htmlFor={'upload'} className={styles.dragFilesButton}>Browse Files</label>
                     </div>
                     <div className={styles.uploadedFileList}>
@@ -93,38 +93,35 @@ export default class UploadComponent extends React.Component{
         e.stopPropagation();
 
         let dt = e.dataTransfer
-        let files = dt.files
+        let files = dt.files;
 
-        console.log(files);
+        const myFiles = []
+
+        for (let i=0;i<dt.files.length;i++){
+            console.log(dt.files[i].name)
+            myFiles.push({
+                name: dt.files[i].name,
+                type: dt.files[i].type,
+                size: dt.files[i].size,
+            });
+        }
+
         this.setState({
-            uploadedFiles: this.state.uploadedFiles.concat(files)
+            uploadedFiles: this.state.uploadedFiles.concat(myFiles)
         })
-    }
-
-    uploadHandler = e => {
-        console.log("upload", e.target.files)
-        const reader = new FileReader();
-        reader.onload = this.handleLoad;
-        reader.readAsArrayBuffer(e.target.files[0])
     }
 
     fileUploaded = e => {
         console.log(e.target.files);
     }
 
-    handleLoad = function(e) {
+    handleLoad = async e => {
+        let photo = e.target.files[0];
+        let formData = new FormData();
 
-        const rawData = e.target.result;
+        formData.append("photo", photo);
+        const result = await fetch('http://localhost:5000/api/file', {method: "POST", body: formData});
 
-        //ws.send(rawData);
-        console.log(rawData);
-
-        alert("the File has been transferred.")
-
-        const ws = new WebSocket("ws://localhost:5000");
-        ws.addEventListener('open', () => {
-            ws.send(rawData);
-        })
-
+        console.log(result);
     }
 }
