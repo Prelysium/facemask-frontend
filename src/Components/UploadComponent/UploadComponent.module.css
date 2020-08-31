@@ -5,7 +5,7 @@
 
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: start;
     align-items: center;
 
     position: relative;
@@ -33,7 +33,7 @@
 }
 
 .basicContainer{
-    height: 90%;
+
     margin-top: 50px;
 }
 
@@ -82,8 +82,18 @@
     align-items: start;
 }
 
+.dropContainer{
+    border: 2px dashed #d27c7c;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    position: relative;
+}
+
 .uploadWidget{
-    border: 1px dashed #d27c7c;
+    border-radius: 3px;
     width: 45%;
 
     display: flex;
@@ -99,11 +109,12 @@
 }
 
 .unselected{
-
+    background: linear-gradient(45deg, rgb(229, 128, 128), rgb(198, 0, 0));;
+    opacity: 0;
 }
 
 .selected{
-    background: #e59b9b;
+    background: linear-gradient(45deg, rgb(229, 128, 128), rgb(198, 0, 0));
     opacity: 0.4;
 }
 
@@ -114,7 +125,54 @@
 }
 
 .fileItem{
+    width: 100%;
 
+    display: flex;
+    align-content: center;
+    font-family: 'Nunito', sans-serif;
+
+    border-bottom: 1px solid #d7c8c8;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.imageTitles{
+
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+}
+
+.sizeLabel{
+    color: #a49e9e;
+    margin-left: 6px;
+    font-size: 12px;
+}
+
+.closeLabel{
+    height: 15px;
+    cursor: pointer;
+}
+
+.nameLabel{
+    margin-left: 6px;
+    font-weight: bold;
+}
+
+.fileInfo{
+    width: 80%;
+}
+
+.fileIconContainer{
+    width: 15%;
+
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.fileIcon{
+    height: 45px;
 }
 
 .uploadedFileContainer{
@@ -143,6 +201,7 @@
     color: #c45656;
     font-size: 30px;
     margin-top:15px;
+    margin-bottom: 15px;
 }
 
 .dragFilesButton{
@@ -174,6 +233,8 @@
     width: 100%;
     height: 100%;
     position: absolute;
+
+    transition: all .3s;
 
     z-index: 4;
 }

@@ -1,10 +1,21 @@
 import styles from './UploadComponent.module.css'
 import React from "react";
 import fileUpload from "../../assets/file-upload.png"
+import photoIcon from "../../assets/photoIcon.png"
+import closeIcon from "../../assets/close.png"
 
 const FileItem = props => (
     <div className={styles.fileItem}>
-
+        <div className={styles.fileIconContainer}>
+            <img className={styles.fileIcon} src={photoIcon}/>
+        </div>
+        <div className={styles.fileInfo}>
+            <div className={styles.imageTitles}>
+                <span className={styles.nameLabel}>{props.name}</span>
+                <img className={styles.closeLabel} src={closeIcon}/>
+            </div>
+            <span className={styles.sizeLabel}>{(props.size / 1000).toFixed(2)} KB</span>
+        </div>
     </div>
 )
 
@@ -15,6 +26,7 @@ export default class UploadComponent extends React.Component{
         this.state = {
             dragAreaClass: styles.unselected,
             uploadedFiles: [],
+            realFileList: [],
         }
     }
 
@@ -30,7 +42,7 @@ export default class UploadComponent extends React.Component{
     render(){
         console.log("hmm: ", this.state.uploadedFiles);
         const files = this.state.uploadedFiles.map(file => (
-            <div className={styles.fileItem} key={file.name}>{file.name}</div>
+            <FileItem key = {file.name} name={file.name} size={file.size}/>
         ))
 
         return (<div className={styles.mainComponent}>
@@ -38,19 +50,19 @@ export default class UploadComponent extends React.Component{
                 <div className={styles.title}>File Upload</div>
                 <div className={styles.uploadBarContainer}>
                     <div className={`${styles.uploadWidget}`}
-
                     >
-                        <div className={`${styles.dropAreaBackground}  ${this.state.dragAreaClass}`}
-                             onDragEnter={this.dragEnter}
-                             onDragLeave={this.dragLeave}
-                             onDragOver={this.dragOver}
-                             onDragEnd={this.dragDrop}
-                             onDrop={this.dragDrop}>
-
+                        <div className={`${styles.dropContainer}`}>
+                            <div className={`${styles.dropAreaBackground} ${this.state.dragAreaClass}`}
+                                 onDragEnter={this.dragEnter}
+                                 onDragLeave={this.dragLeave}
+                                 onDragOver={this.dragOver}
+                                 onDragEnd={this.dragDrop}
+                                 onDrop={this.dragDrop}>
+                            </div>
+                            <img className={styles.fileUploadImage} src={fileUpload}/>
+                            <div className={styles.dragFilesLabel}>Drag files to upload</div>
+                            <input onChange={this.handleLoad} className={styles.uploadInput} type={'file'} id={'upload'}/>
                         </div>
-                        <img className={styles.fileUploadImage} src={fileUpload}/>
-                        <div className={styles.dragFilesLabel}>Drag files to upload</div>
-                        <input onChange={this.handleLoad} className={styles.uploadInput} type={'file'} id={'upload'}/>
                         <label htmlFor={'upload'} className={styles.dragFilesButton}>Browse Files</label>
                     </div>
                     <div className={styles.uploadedFileList}>
@@ -88,6 +100,8 @@ export default class UploadComponent extends React.Component{
         e.stopPropagation();
     }
 
+
+
     dragDrop = e => {
         e.preventDefault();
         e.stopPropagation();
@@ -96,18 +110,21 @@ export default class UploadComponent extends React.Component{
         let files = dt.files;
 
         const myFiles = []
+        const realFiles = []
 
         for (let i=0;i<dt.files.length;i++){
-            console.log(dt.files[i].name)
             myFiles.push({
                 name: dt.files[i].name,
                 type: dt.files[i].type,
                 size: dt.files[i].size,
             });
+            realFiles.push(dt.files[i]);
         }
 
         this.setState({
-            uploadedFiles: this.state.uploadedFiles.concat(myFiles)
+            uploadedFiles: this.state.uploadedFiles.concat(myFiles),
+            dragAreaClass: styles.unselected,
+            realFileList: this.state.realFileList.concat(realFiles)
         })
     }
 
@@ -117,11 +134,32 @@ export default class UploadComponent extends React.Component{
 
     handleLoad = async e => {
         let photo = e.target.files[0];
+        console.log(e.target.files);
+
+        const myFiles = []
+        const realFiles = []
+
+        for (let i=0;i<e.target.files.length;i++){
+            myFiles.push({
+                name: e.target.files[i].name,
+                type: e.target.files[i].type,
+                size: e.target.files[i].size,
+            });
+            realFiles.push(e.target.files[i]);
+        }
+
+        this.setState({
+            uploadedFiles: this.state.uploadedFiles.concat(myFiles),
+            dragAreaClass: styles.unselected,
+            realFileList: this.state.realFileList.concat(realFiles)
+        })
+
+
         let formData = new FormData();
 
         formData.append("photo", photo);
-        const result = await fetch('http://localhost:5000/api/file', {method: "POST", body: formData});
+        //const result = await fetch('http://localhost:5000/api/file', {method: "POST", body: formData});
 
-        console.log(result);
+        //console.log(result);
     }
 }
