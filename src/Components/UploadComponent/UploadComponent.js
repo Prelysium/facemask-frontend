@@ -40,7 +40,6 @@ export default class UploadComponent extends React.Component{
     }
 
     render(){
-        console.log("hmm: ", this.state.uploadedFiles);
         const files = this.state.uploadedFiles.map(file => (
             <FileItem key = {file.name} name={file.name} size={file.size}/>
         ))
@@ -71,11 +70,15 @@ export default class UploadComponent extends React.Component{
                             {files}
                         </div>
                     </div>
+
+                    <button onClick={this.startUploading}>Upload</button>
                 </div>
             </div>
             <div className={`${styles.rightContainer} ${styles.basicContainer}`}>right</div>
         </div>);
     }
+
+
 
     dragEnter = e => {
         e.preventDefault();
@@ -128,13 +131,18 @@ export default class UploadComponent extends React.Component{
         })
     }
 
-    fileUploaded = e => {
-        console.log(e.target.files);
+    startUploading = async (e) => {
+        console.log(this.state.realFileList);
+        let formData = new FormData();
+
+        this.state.realFileList.forEach(file => {
+            formData.append(file.name, file);
+        });
+
+        const result = await fetch('http://localhost:5000/image', {method: "POST", body: formData});
     }
 
     handleLoad = async e => {
-        let photo = e.target.files[0];
-        console.log(e.target.files);
 
         const myFiles = []
         const realFiles = []
@@ -153,12 +161,6 @@ export default class UploadComponent extends React.Component{
             dragAreaClass: styles.unselected,
             realFileList: this.state.realFileList.concat(realFiles)
         })
-
-
-        let formData = new FormData();
-
-        formData.append("photo", photo);
-        //const result = await fetch('http://localhost:5000/api/file', {method: "POST", body: formData});
 
         //console.log(result);
     }
