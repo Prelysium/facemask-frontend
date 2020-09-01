@@ -7,11 +7,16 @@
     padding-right: 50px;
     padding-left: 50px;
 
-
-    background: whitesmoke;
-    box-shadow: 2px 2px 2px #888282;
+    -webkit-box-shadow: -7px -37px 31px 36px rgba(0,0,0,0.75);
+    -moz-box-shadow: -7px -37px 31px 36px rgba(0,0,0,0.75);
+    box-shadow: -7px -37px 31px 36px rgba(0,0,0,0.75);
 
     z-index: 10;
+    height: 70px;
+
+    align-items: center;
+
+    flex-shrink: 0;
 }
 
 .navBar{

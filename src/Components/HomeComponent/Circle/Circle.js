@@ -8,6 +8,10 @@ export default class Circle extends React.Component{
     constructor(props) {
         super(props);
         this.circleColor = '#adb3b7';
+
+        this.state = {
+            animationsArray: [true, false, false , false],
+        }
     }
 
     componentDidMount() {
@@ -20,41 +24,41 @@ export default class Circle extends React.Component{
 
                         <rect id={'upperRect'}
                               x={90}
-                              onAnimationEnd={this.handleAnimationEnd}
+                              onAnimationEnd={e => this.handleAnimationEnd(e, 0)}
                               width={0}
                               height={200}
                               fill={'none'}
-                              className={styles.upperFill}
+                              className={this.state.animationsArray[0] ? styles.upperFill : ''}
                         />
 
                         <rect id={'rightRect'}
                               x={600-90}
                               y={90}
-                              onAnimationEnd={this.handleAnimationEnd}
+                              onAnimationEnd={e => this.handleAnimationEnd(e, 1)}
                               width={200}
                               height={0}
                               fill={'none'}
-                              className={styles.rightFill}
+                              className={this.state.animationsArray[1] ? styles.rightFill : ''}
                         />
 
                         <rect id={'lowerRect'}
                               x={600-90}
                               y={600-90}
-                              onAnimationEnd={this.handleAnimationEnd}
+                              onAnimationEnd={e => this.handleAnimationEnd(e, 2)}
                               width={0}
                               height={200}
                               fill={'none'}
-                              className={styles.lowerFill}
+                              className={this.state.animationsArray[2] ? styles.lowerFill : ''}
                         />
 
                         <rect id={'leftRect'}
                               x={0}
                               y={600-90}
-                              onAnimationEnd={this.handleAnimationEnd}
+                              onAnimationEnd={e => this.handleAnimationEnd(e, 3)}
                               width={200}
                               height={0}
                               fill={'none'}
-                              className={styles.leftFill}
+                              className={this.state.animationsArray[3] ? styles.leftFill : ''}
                         />
 
                         <clipPath id={'clipRect'}>
@@ -114,12 +118,13 @@ export default class Circle extends React.Component{
                         </svg>
                     </div>
 
-                    <div className={`${styles.shapeContainer} ${styles.lowerLeftShape}`}>
+                    <div className={`${styles.shapeContainer} ${styles.lowerLeftShape} `}>
                         <svg xmlns="http://www.w3.org/2000/svg"
                              width="20"
                              height="20"
                              viewBox="0 0 20 20"
                              fill={'#ff4e4c'}
+                             className={`${styles.actualShape} ${styles.turnAroundAnimation}`}
                         >
                             <path d="M1 1h20v20H1z" />
                         </svg>
@@ -139,7 +144,15 @@ export default class Circle extends React.Component{
                 </div>);
     }
 
-    handleAnimationEnd = e => {
-        console.log("animation end");
+    handleAnimationEnd = (e, index) => {
+        const newArr = this.state.animationsArray.splice(0)
+        const newIndex = (index+1) % 4;
+
+        newArr[index] = false;
+        newArr[newIndex] = true;
+
+        this.setState({
+            animationsArray: newArr
+        })
     }
 }

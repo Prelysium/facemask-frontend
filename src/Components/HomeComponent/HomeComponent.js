@@ -2,6 +2,7 @@ import React from "react";
 import styles from './HomeComponent.module.css'
 import Circle from "./Circle/Circle";
 import backgroundImage from "../../assets/peopleWallpaper.jpg"
+import maskGuy from "../../assets/mask_guy.jpg"
 
 const TextItem = (props) => (
     <div className={styles.textItem}>
@@ -41,9 +42,19 @@ export default class HomeComponent extends React.Component{
                         </div>
                     </div>
 
-                    <div className={styles.emptySpace}>
-                        ...
-                     </div>
+                    <div className={styles.afterCircle}>
+
+                    </div>
+
+                    <div className={styles.secondBackgroundPanel}>
+                        <div className={styles.secondBackgroundBackground} >
+                            <img className={styles.secondBackgroundImage} src={maskGuy}/>
+                        </div>
+                    </div>
+
+                    <div className={styles.footer}>
+
+                    </div>
                 </div>);
     }
 }

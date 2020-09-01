@@ -6,7 +6,8 @@
     align-items: center;
 
     cursor: pointer;
-    min-width: 80px;
+    width: 100px;
+    min-width: 100px;
     user-select: none;
 
 
@@ -28,7 +29,6 @@
 }
 
 .textContainer:hover{
-
     color: #ff4e4c;
 }
 
@@ -49,11 +49,23 @@
 .selected{
     position: relative;
 
-    color: whitesmoke;
-    background: #ff4e4c;
+    color: #ff3230;
     font-weight: bold;
 
     padding: 6px;
     border-radius: 15px;
     cursor: default;
+}
+
+.selected::after{
+    background: #ff4e4c;
+    content: "";
+    width: 100%;
+    height: 2px;
+    border-radius: 2px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+
+    transition: all .3s;
 }

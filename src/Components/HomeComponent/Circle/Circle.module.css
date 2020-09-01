@@ -39,20 +39,33 @@
     to{height:0; y: 90}
 }
 
+@keyframes turnAround {
+    from {
+        transform: rotateY(0deg) translateZ(-10px);
+    }
+    to{
+        transform: rotateY(180deg) translateZ(0px);
+    }
+}
+
+.turnAroundAnimation{
+    animation: turnAround 2s;
+}
+
 .upperFill{
-    animation: upperRectAnimation 10s;
+    animation: upperRectAnimation 9s linear;
 }
 
 .rightFill{
-    animation: rightRectAnimation 10s;
+    animation: rightRectAnimation 9s linear;
 }
 
 .leftFill{
-    animation: leftRectAnimation 10s;
+    animation: leftRectAnimation 9s linear;
 }
 
 .lowerFill{
-    animation: lowerRectAnimation 10s;
+    animation: lowerRectAnimation 9s linear;
 }
 
 .presentation{
@@ -73,6 +86,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
+    perspective: 100px;
+    transform-origin: center ;
+}
+
+.actualShape{
+
 }
 
 .lowerRightShape{
