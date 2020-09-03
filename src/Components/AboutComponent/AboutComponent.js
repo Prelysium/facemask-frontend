@@ -31,16 +31,13 @@ export default class AboutComponent extends React.Component{
                     <div className={styles.mainTextUpper}>
                         <div className={styles.title}>The Short</div>
                         <div className={styles.desc}>
-                            is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+                            Prelisium, new AI breakthrough product, which aims to help companies fight coronavirus and its consequences while, on the other hand help them to follow new guidelines structured by government. This product will be accessible to any company and will challenge their fear about AI.
                         </div>
                     </div>
                     <div className={styles.mainTextLower}>
                         <div className={styles.title}>The Long</div>
                         <div className={styles.desc}>
-                            is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
-                            is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
-                            is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
-                            is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
+                            Artificial intelligence is cool, everyone admits it. However, we don’t use it in our daily lives. According to the research done by student of Free University of Tbilisi, 95% of companies are not willing to invest money to AI start-ups. Due to this, we introduce very accessible product for every company in every country.  Our software will be able to detect and track people from the video cameras. Technology-wise, the product’s base part will be built on artificial intelligence models, which will locate people and control wether or not they’re wearing face masks and following the rules given by the government. The main feature of our project is that it will be accessible from all devices. Users will be able to use their webcam source and get back video stream processed by our Computer Vision algorithm in a real time.
                         </div>
                     </div>
                 </div>
@@ -48,13 +45,16 @@ export default class AboutComponent extends React.Component{
                     <div className={styles.listTitle}>List Title</div>
                     <div className={styles.listContent}>
                         <ul>
-                            <li className={styles.listItem}>word number one</li>
-                            <li className={styles.listItem}>word number one</li>
-                            <li className={styles.listItem}>word number one</li>
-                            <li className={styles.listItem}>word number one</li>
-                            <li className={styles.listItem}>word number one</li>
-                            <li className={styles.listItem}>word number one</li>
-                            <li className={styles.listItem}>word number one</li>
+                            <li className={styles.listItem}>Carrefour</li>
+                            <li className={styles.listItem}>Nikora</li>
+                            <li className={styles.listItem}>Orinabiji</li>
+                            <li className={styles.listItem}>Europroduct</li>
+                            <li className={styles.listItem}>Agrohub</li>
+                            <li className={styles.listItem}>Tbilisi malls</li>
+                            <li className={styles.listItem}>Mzesumzira</li>
+                            <li className={styles.listItem}>Ciskari</li>
+                            <li className={styles.listItem}>Bank of Georgia</li>
+                            <li className={styles.listItem}>TBC bank</li>
                         </ul>
                     </div>
                 </div>
