@@ -32,6 +32,26 @@
     box-shadow: 10px 11px 30px -10px rgba(122,122,122,1);
 }
 
+.download{
+    outline: none;
+    text-decoration: none;
+
+    margin-left: 5px;
+    background: #614ea4;
+
+    border-radius: 5px;
+
+    padding: 3px;
+    color: whitesmoke;
+
+    transition: all .3s;
+}
+
+.download:hover{
+    background: #3f2c7a;
+    color: #c3abab;
+}
+
 .basicContainer{
 
     margin-top: 50px;
@@ -116,6 +136,10 @@
 .selected{
     background: linear-gradient(45deg, rgb(229, 128, 128), rgb(198, 0, 0));
     opacity: 0.4;
+}
+
+.loading{
+    height: 24px;
 }
 
 .uploadedFileList{

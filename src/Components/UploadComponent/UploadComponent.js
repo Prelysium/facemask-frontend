@@ -4,6 +4,7 @@ import fileUpload from "../../assets/file-upload.png"
 import photoIcon from "../../assets/photoIcon.png"
 import closeIcon from "../../assets/close.png"
 import CloseButton from "./CloseButton/CloseButton";
+import loading from "../../assets/Ripple-1s-200px.gif"
 
 const FileItem = props => (
     <div className={styles.fileItem}>
@@ -13,10 +14,11 @@ const FileItem = props => (
         <div className={styles.fileInfo}>
             <div className={styles.imageTitles}>
                 <span className={styles.nameLabel}>{props.name}</span>
-                <CloseButton onClick={props.handleClick}/>
+                {!props.loading && <CloseButton onClick={props.handleClick}/>}
+                {props.loading && <img className={styles.loading} src={loading}/>}
             </div>
             <span className={styles.sizeLabel}>{(props.size / 1000).toFixed(2)} KB</span>
-            {props.ready && <a href={props.link} download={props.name}>download</a>}
+            {props.ready && <a href={props.link} className={styles.download}>download</a>}
         </div>
     </div>
 )
@@ -46,9 +48,9 @@ export default class UploadComponent extends React.Component{
     handleCloseClick = (e, i) => {
         console.log(i);
         const uploadedFiles = this.state.uploadedFiles.splice(0);
-        const realFileList = this.state.uploadedFiles.splice(0)
-        const readyArr = this.state.uploadedFiles.splice(0)
-        const linkArr = this.state.uploadedFiles.splice(0)
+        const realFileList = this.state.realFileList.splice(0)
+        const readyArr = this.state.readyArr.splice(0)
+        const linkArr = this.state.linkArr.splice(0)
 
         uploadedFiles.splice(i, 1);
         realFileList.splice(i, 1);
@@ -62,6 +64,7 @@ export default class UploadComponent extends React.Component{
     render(){
         const files = this.state.uploadedFiles.map((file,i) => (
             <FileItem key = {file.name}
+                      loading={this.state.loading}
                       name={file.name}
                       size={file.size}
                       ready={this.state.readyArr[i]}
@@ -171,19 +174,27 @@ export default class UploadComponent extends React.Component{
             formData.append(file.name, file);
         });
 
+        this.setState({
+            loading: true,
+        });
+
 
         const result = await fetch('http://localhost:5000/api/file', {method: "POST", body: formData});
+
+
+
         const answer = await result.json();
 
         const picArray = JSON.parse(answer.pic);
         console.log(picArray);
 
         const readyArr = picArray.map(id => true);
-        const linkArr = picArray.map(id => `http://localhost:5000/api/image?id=${id}`);
+        const linkArr = picArray.map(id => typeof id === 'number' ? `http://localhost:5000/api/image?id=${id}` : `http://localhost:5000/videos/output/${id}`);
 
         this.setState({
             readyArr: readyArr,
-            linkArr: linkArr
+            linkArr: linkArr,
+            loading: false
         })
     }
 
