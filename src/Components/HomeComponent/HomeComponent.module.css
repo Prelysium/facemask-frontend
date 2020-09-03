@@ -59,6 +59,46 @@
     border-right: #ff4e4c solid 1px;
 }
 
+.videoPanel{
+    height: 60vh;
+    flex-shrink: 0;
+    width: 100%;
+
+    background: #eff4f5;
+
+    display: flex;
+    flex-direction: row;
+
+    justify-content: space-between;
+    align-items: center;
+}
+
+.text{
+    margin-right: 100px;
+    margin-left: 50px;
+}
+
+.titleVid{
+    font-size: 23px;
+    font-weight: bold;
+
+    margin-top: 30px;
+    margin-bottom: 5px;
+
+    font-family: 'Montserrat', sans-serif;
+}
+
+.textVid{
+    margin-bottom: 5px;
+
+    font-family: 'Montserrat', sans-serif;
+
+}
+
+.videoContainer{
+    margin-right: 60px;
+}
+
 @keyframes FadeIn {
     from{
         opacity: 0;
