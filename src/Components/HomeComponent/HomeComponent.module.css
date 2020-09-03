@@ -88,7 +88,19 @@
     text-shadow: 0 0 10px #FFFFFF;
     animation: FadeIn 4s;
 }
+.secondaryTextMain{
+    font-size: 35px;
+    color: #e3e3e3;
 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 40%;
+    animation: FadeIn 4s;
+    font-weight: 900;
+
+}
 .secondaryText{
     font-size: 30px;
     color: #e3e3e3;
@@ -98,11 +110,7 @@
     align-items: center;
     text-align: center;
     width: 40%;
-
-
-
     animation: FadeIn 4s;
-
 }
 
 .backgroundLayer{
