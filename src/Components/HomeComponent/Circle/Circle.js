@@ -11,6 +11,7 @@ export default class Circle extends React.Component{
 
         this.state = {
             animationsArray: [true, false, false , false],
+            shapeAnimations: [false, false, false, false]
         }
     }
 
@@ -102,6 +103,8 @@ export default class Circle extends React.Component{
                              height="20"
                              viewBox="0 0 20 20"
                              fill={'#ff4e4c'}
+                             className={this.state.shapeAnimations[0] ? styles.turnAroundAnimation : ''}
+                             onAnimationEnd={(e) => this.shapeAnimationEnd(0)}
                         >
                             <path d="M1 1h20v20H1z" />
                         </svg>
@@ -113,6 +116,8 @@ export default class Circle extends React.Component{
                              height="20"
                              viewBox="0 0 20 20"
                              fill={'#ff4e4c'}
+                             className={this.state.shapeAnimations[1] ? styles.turnAroundAnimation : ''}
+                             onAnimationEnd={(e) => this.shapeAnimationEnd(1)}
                         >
                             <path d="M1 1h20v20H1z" />
                         </svg>
@@ -124,7 +129,8 @@ export default class Circle extends React.Component{
                              height="20"
                              viewBox="0 0 20 20"
                              fill={'#ff4e4c'}
-                             className={`${styles.actualShape} ${styles.turnAroundAnimation}`}
+                             className={this.state.shapeAnimations[3] ? styles.turnAroundAnimation : ''}
+                             onAnimationEnd={(e) => this.shapeAnimationEnd(2)}
                         >
                             <path d="M1 1h20v20H1z" />
                         </svg>
@@ -136,12 +142,22 @@ export default class Circle extends React.Component{
                              height="20"
                              viewBox="0 0 20 20"
                              fill={'#ff4e4c'}
+                             className={this.state.shapeAnimations[2] ? styles.turnAroundAnimation : ''}
+                             onAnimationEnd={(e) => this.shapeAnimationEnd(3)}
                         >
                             <path d="M1 1h20v20H1z" />
                         </svg>
                     </div>
 
                 </div>);
+    }
+
+    shapeAnimationEnd = i => {
+        const arr = this.state.shapeAnimations.splice(0)
+        arr[i] = false;
+        this.setState({
+           shapeAnimation: arr
+        });
     }
 
     handleAnimationEnd = (e, index) => {
@@ -151,8 +167,12 @@ export default class Circle extends React.Component{
         newArr[index] = false;
         newArr[newIndex] = true;
 
+        const shapeArr = this.state.shapeAnimations.splice(0)
+        shapeArr[newIndex] = true;
+
         this.setState({
-            animationsArray: newArr
+            animationsArray: newArr,
+            shapeAnimations: shapeArr
         })
     }
 }

@@ -44,7 +44,7 @@
         transform: rotateY(0deg) translateZ(0px);
     }
     50%{
-        transform: rotateY(90deg) translateZ(-10px);
+        transform: rotateY(90deg) translateZ(0px);
 
     }
     to{
@@ -53,7 +53,8 @@
 }
 
 .turnAroundAnimation{
-    animation: turnAround 2s infinite;
+    animation: turnAround 1s;
+    transform-origin: 10px 10px;
 }
 
 .upperFill{
@@ -92,7 +93,6 @@
     align-items: center;
 
     perspective: 100px;
-    transform-origin: center ;
 }
 
 .actualShape{
