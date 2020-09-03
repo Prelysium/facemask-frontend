@@ -1,0 +1,8 @@
+.mainContainer{
+    cursor: pointer;
+    fill:black;
+}
+
+.mainContainer:hover{
+    fill: #514949;
+}

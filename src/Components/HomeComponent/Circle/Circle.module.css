@@ -41,7 +41,11 @@
 
 @keyframes turnAround {
     from {
-        transform: rotateY(0deg) translateZ(-10px);
+        transform: rotateY(0deg) translateZ(0px);
+    }
+    50%{
+        transform: rotateY(90deg) translateZ(-10px);
+
     }
     to{
         transform: rotateY(180deg) translateZ(0px);
@@ -49,7 +53,7 @@
 }
 
 .turnAroundAnimation{
-    animation: turnAround 2s;
+    animation: turnAround 2s infinite;
 }
 
 .upperFill{

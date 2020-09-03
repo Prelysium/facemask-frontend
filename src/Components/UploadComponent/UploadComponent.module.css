@@ -154,6 +154,10 @@
     cursor: pointer;
 }
 
+.closeLabel:hover{
+    height: 17px;
+}
+
 .nameLabel{
     margin-left: 6px;
     font-weight: bold;
@@ -241,4 +245,8 @@
 
 .uploadInput{
     display: none;
+}
+
+.upload{
+
 }

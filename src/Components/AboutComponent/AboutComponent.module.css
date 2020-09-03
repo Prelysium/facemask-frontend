@@ -1,3 +1,62 @@
 .mainContainer{
+    display: flex;
 
+    justify-content: space-evenly;
+    align-items: center;
+
+    height: 100%;
+}
+
+.basicContainer{
+    height: 100%;
+    flex-shrink: 0;
+}
+
+.imageContainer{
+
+    width: 20%;
+
+    display: flex;
+    justify-content: space-evenly;
+    font-family: 'Inconsolata', monospace;
+    align-items: center;
+
+    flex-direction: column;
+
+    border: 1px solid red;
+}
+
+.mainTextContainer{
+    border: 1px solid black;
+    width: 30%;
+}
+
+.secondaryTextContainer{
+    border: 1px solid black;
+    width: 25%;
+}
+
+.contactContainer{
+    border: 1px solid black;
+    width: 25%;
+}
+
+.imageBox{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+
+    flex-direction: column;
+
+}
+
+.image{
+    width: 70%;
+    border: 1px solid black;
+}
+
+.name{
+    font-size: 25px;
+    margin-top: 5px;
 }
