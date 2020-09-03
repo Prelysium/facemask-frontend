@@ -15,6 +15,7 @@ const FileItem = props => (
                 <img className={styles.closeLabel} src={closeIcon}/>
             </div>
             <span className={styles.sizeLabel}>{(props.size / 1000).toFixed(2)} KB</span>
+            {props.ready && <a href={props.link} download>download</a>}
         </div>
     </div>
 )
@@ -27,6 +28,8 @@ export default class UploadComponent extends React.Component{
             dragAreaClass: styles.unselected,
             uploadedFiles: [],
             realFileList: [],
+            readyArr: [],
+            linkArr: [],
         }
     }
 
@@ -40,8 +43,13 @@ export default class UploadComponent extends React.Component{
     }
 
     render(){
-        const files = this.state.uploadedFiles.map(file => (
-            <FileItem key = {file.name} name={file.name} size={file.size}/>
+        const files = this.state.uploadedFiles.map((file,i) => (
+            <FileItem key = {file.name}
+                      name={file.name}
+                      size={file.size}
+                      ready={this.state.readyArr[i]}
+                      link={this.state.linkArr[i]}
+            />
         ))
 
         return (<div className={styles.mainComponent}>
@@ -114,6 +122,8 @@ export default class UploadComponent extends React.Component{
 
         const myFiles = []
         const realFiles = []
+        const readyArr = [];
+        const linkArr = [];
 
         for (let i=0;i<dt.files.length;i++){
             myFiles.push({
@@ -122,12 +132,16 @@ export default class UploadComponent extends React.Component{
                 size: dt.files[i].size,
             });
             realFiles.push(dt.files[i]);
+            readyArr.push(false);
+            linkArr.push("");
         }
 
         this.setState({
             uploadedFiles: this.state.uploadedFiles.concat(myFiles),
             dragAreaClass: styles.unselected,
-            realFileList: this.state.realFileList.concat(realFiles)
+            realFileList: this.state.realFileList.concat(realFiles),
+            readyArr: readyArr,
+            linkArr: linkArr,
         })
     }
 
@@ -139,7 +153,20 @@ export default class UploadComponent extends React.Component{
             formData.append(file.name, file);
         });
 
-        const result = await fetch('http://localhost:5000/image', {method: "POST", body: formData});
+
+        const result = await fetch('http://localhost:5000/api/file', {method: "POST", body: formData});
+        const answer = await result.json();
+
+        const picArray = JSON.parse(answer.pic);
+        console.log(picArray);
+
+        const readyArr = picArray.map(id => true);
+        const linkArr = picArray.map(id => ` http://localhost:5000/api/getfile?id=${id}`);
+
+        this.setState({
+            readyArr: readyArr,
+            linkArr: linkArr
+        })
     }
 
     handleLoad = async e => {
