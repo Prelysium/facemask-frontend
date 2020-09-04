@@ -103,7 +103,6 @@ export default class UploadComponent extends React.Component{
                 </div>
 
             </div>
-            <div className={`${styles.rightContainer} ${styles.basicContainer}`}>right</div>
         </div>);
     }
 
