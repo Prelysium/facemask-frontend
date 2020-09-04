@@ -14,6 +14,7 @@ export default class VideoComponent extends React.Component{
         this.state = {
             loading: false,
             blur: false,
+            number: -1
         }
     }
 
@@ -35,13 +36,37 @@ export default class VideoComponent extends React.Component{
         console.log("video track received");
         console.log(event.streams[0]);
         this.videoRef.current.srcObject = event.streams[0];
+
+        setInterval(async () => {
+            const res = await fetch("http://localhost:5000/api/status", {
+                method: "GET",
+            });
+            const ans = await res.json()
+
+            this.setState({
+                number: ans.number
+            })
+        }, 1000);
     }
 
     render(){
+        let col = 'black'
+        switch (this.state.number){
+            case 1:
+                col = styles.green;
+                break;
+            case 0:
+                col = styles.red;
+                break;
+        }
 
         return (<div className={styles.mainContainer}>
                     <div className={styles.upperPanel}>
-                        <VideoPanel title={'Server Messages'}/>
+                        <VideoPanel title={'Server Messages'}>
+                            <div className={`${styles.message} ${col}`}>
+                                {this.state.number > -1 && (this.state.number === 1 ? "Thanks For Wearing A Mask" : "Please Wear A Mask")}
+                            </div>
+                        </VideoPanel>
                         <VideoPanel title={'Video Stream'} large={true}>
                             <video className={styles.video} autoPlay ref={this.videoRef} poster={wallpaper} onPlay={this.handlePlay}/>
                             {this.state.loading && <img className={styles.loading} src={loading}/>}

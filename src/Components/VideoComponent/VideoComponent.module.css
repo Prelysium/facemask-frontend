@@ -35,6 +35,19 @@
     align-items: center;
 }
 
+
+.message{
+    font-size: 30px;
+}
+
+.red{
+    color: red;
+}
+
+.green{
+    color: green;
+}
+
 .checkBox{
     width: 20px;
     height: 20px;
