@@ -75,7 +75,56 @@ export default class HomeComponent extends React.Component{
                     </div>
 
                     <div className={styles.footer}>
-
+                        <div className={styles.footerComponent}>
+                            <div className={styles.insideFooterComponent}>
+                                <span className={styles.span}>text trext</span>
+                                <span className={styles.span}>text trext</span>
+                                <span className={styles.span}>text trext</span>
+                                <span className={styles.span}>text trext</span>
+                                <span className={styles.span}>text trext</span>
+                                <span className={styles.span}>text trext</span>
+                            </div>
+                        </div>
+                        <div className={styles.footerComponent}>
+                            <div className={styles.insideFooterComponent}>
+                            <span className={styles.span}>text trext</span>
+                            <span className={styles.span}>text trext</span>
+                            <span className={styles.span}>text trext</span>
+                            <span className={styles.span}>text trext</span>
+                            <span className={styles.span}>text trext</span>
+                            <span className={styles.span}>text trext</span>
+                        </div>
+                        </div>
+                        <div className={styles.footerComponent}>
+                            <div className={styles.insideFooterComponent}>
+                            <span className={styles.span}>text trext</span>
+                            <span className={styles.span}>text trext</span>
+                            <span className={styles.span}>text trext</span>
+                            <span className={styles.span}>text trext</span>
+                            <span className={styles.span}>text trext</span>
+                            <span className={styles.span}>text trext</span>
+                        </div>
+                        </div>
+                        <div className={styles.footerComponent}>
+                            <div className={styles.insideFooterComponent}>
+                            <span className={styles.span}>text trext</span>
+                            <span className={styles.span}>text trext</span>
+                            <span className={styles.span}>text trext</span>
+                            <span className={styles.span}>text trext</span>
+                            <span className={styles.span}>text trext</span>
+                            <span className={styles.span}>text trext</span>
+                        </div>
+                        </div>
+                        <div className={styles.footerComponent}>
+                            <div className={styles.insideFooterComponent}>
+                            <span className={styles.span}>text trext</span>
+                            <span className={styles.span}>text trext</span>
+                            <span className={styles.span}>text trext</span>
+                            <span className={styles.span}>text trext</span>
+                            <span className={styles.span}>text trext</span>
+                            <span className={styles.span}>text trext</span>
+                        </div>
+                        </div>
                     </div>
                 </div>);
     }

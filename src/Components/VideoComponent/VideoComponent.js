@@ -21,9 +21,7 @@ export default class VideoComponent extends React.Component{
     componentDidMount() {
         console.log("trying to establish connection");
 
-        this.connection = new RTCPeerConnection();
-        this.connection.addEventListener('icecandidate', this.iceCandidate);
-        this.connection.addEventListener('track', this.trackReceived);
+
     }
 
     // Send a msg to the websocket
@@ -37,7 +35,7 @@ export default class VideoComponent extends React.Component{
         console.log(event.streams[0]);
         this.videoRef.current.srcObject = event.streams[0];
 
-        setInterval(async () => {
+        this.interval = setInterval(async () => {
             const res = await fetch("http://localhost:5000/api/status", {
                 method: "GET",
             });
@@ -75,6 +73,7 @@ export default class VideoComponent extends React.Component{
                             </div>
                             <div className={styles.buttonContainer}>
                                 <div className={styles.button} onClick={this.clickHandler}>Start</div>
+                                <div className={styles.button} onClick={this.handleStop}>Stop</div>
                             </div>
                         </VideoPanel>
                         <VideoPanel title={'Controls'}>
@@ -98,6 +97,23 @@ export default class VideoComponent extends React.Component{
                 </div>);
     }
 
+    handleStop = e => {
+        const stream = this.videoRef.current.srcObject;
+        const tracks = stream.getTracks();
+
+        tracks.forEach(function(track) {
+            track.stop();
+        });
+
+        this.videoRef.current.srcObject = null;
+        this.connection.close();
+
+        clearInterval(this.interval);
+        this.setState({
+            number: -1
+        })
+    }
+
     handleCheck = e => {
         this.setState({
             blur: e.target.checked
@@ -112,7 +128,10 @@ export default class VideoComponent extends React.Component{
     }
 
     clickHandler = async () => {
-        console.log("clink");
+
+        this.connection = new RTCPeerConnection();
+        this.connection.addEventListener('icecandidate', this.iceCandidate);
+        this.connection.addEventListener('track', this.trackReceived);
 
         this.setState({
             loading: true,
@@ -120,8 +139,6 @@ export default class VideoComponent extends React.Component{
 
         this.stream = await navigator.mediaDevices.getUserMedia({video:true});
         await this.connection.addTrack(this.stream.getVideoTracks()[0], this.stream);
-
-        console.log("connection set");
 
         // create offer:
         const offer = await this.connection.createOffer();
